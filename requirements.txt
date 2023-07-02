@@ -1,4 +1,4 @@
-sklearn==0.0.post5
+scikit-learn==1.2.2
 Flask==2.3.2
 keras==2.12.0
 nltk==3.8.1
