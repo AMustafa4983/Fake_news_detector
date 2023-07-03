@@ -2,11 +2,17 @@ from flask import Flask, jsonify, request
 from detector import Detector
 from pipeline import translate
 import easyocr
+from translate import Translator
+import os 
 
-
+os.environ["_BARD_API_KEY"]= 'YQhd-K3VoTIJtrpJdi4H7WFih4uI_veFBYjAbLPaYwOVe-emstt5CvSOxY1TqAmADKGFoA.'   
 model = Detector()
 ocr = easyocr.Reader(['en','ar'])
 
+translator = Translator(from_lang='arabic', to_lang='english')
+
+def translate(text):
+    return translator.translate(text)
 
 app = Flask(__name__)
 
@@ -31,7 +37,7 @@ def arabic():
     data = request.json
     try:
         sample = data['text']
-        sample = translate(sample)
+
     except KeyError:
         return jsonify({'error' : 'No text sent'})
     
@@ -76,7 +82,6 @@ def arabic_image():
     for i in extracted_text:
         text+=i
     
-    text = translate(text)
     predictions = model.predict(text)
     
     try:

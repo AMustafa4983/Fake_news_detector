@@ -1,12 +1,14 @@
-from detector import Detector
+import requests
 
+url = 'http://127.0.0.1:5000/english'
+headers = {'Content-Type': 'application/json; charset=utf-8'}
 
-model_en = Detector()
-english_text = 'Climate changed naturally in prehistoric eras, modern climate change is a naturally occurring phenomenon'
+data = {
+    'text': 'We have been cooling down for the past 4000 years”; the Earth has cooled since the ‘medieval warming’, “It’s all about when you start the measurements'
+}
 
-# Enter your text here 
-english_prediction = model_en.predict(english_text) # English text
+response = requests.post(url, headers=headers, json=data)
 
-
-#print(f'Our result: {english_prediction}')
-print(english_prediction)
+# Process the response
+response_data = response.json()
+print(response_data)
