@@ -10,3 +10,4 @@ numpy==1.23.5
 translate==3.6.1
 easyocr==1.7.0
 bardapi==0.1.24
+db-sqlite3==0.0.1
