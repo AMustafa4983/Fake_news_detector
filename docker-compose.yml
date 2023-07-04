@@ -1,0 +1,12 @@
+version: "23.0.5"
+
+services:
+  fakenews:
+    container_name: fakenews
+    image: mlapp/fakenews
+    ports:
+      - "5000:5000"
+    
+    build:
+      context: .
+      dockerfile: Dockerfile
