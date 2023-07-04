@@ -23,12 +23,6 @@ jobs:
           python -m venv venv
           source venv/bin/activate
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Download NLTK stopwords
-        run: python -c "import nltk; nltk.download('stopwords')"
-
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
         with:
@@ -50,7 +44,7 @@ jobs:
         with:
           name: python-app
           path: .
-
+    
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
@@ -58,8 +52,20 @@ jobs:
           app-name: 'FakeNewsDetector'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6FADA6DAD0A744C4AB90C66BEFE0153B }}
-          
+      
+      - name: Clone repository
+        run: |
+          git clone https://github.com/Abdelrahman4983/Fake_news_detector.git fakenews/
+
+      - name: Install dependencies
+        run: |
+          cd fakenews/
+          pip install -r requirements.txt
+
+      - name: Download NLTK stopwords
+        run: |
+          python -c "import nltk; nltk.download('stopwords')"
+
       - name: Run Flask app
         run: |
-          cd .
           python api.py
