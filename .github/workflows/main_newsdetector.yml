@@ -31,7 +31,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-          python -c "import nltk; nltk.download("stopwords")"
+          python -c "import nltk; nltk.download('stopwords')"
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
