@@ -7,6 +7,3 @@ requests
 requests-oauthlib
 urllib3
 numpy
-translate
-bardapi
-easyocr
