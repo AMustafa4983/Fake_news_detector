@@ -4,7 +4,7 @@ import os
 import easyocr
 
 
-os.environ["_BARD_API_KEY"]= 'YQhd-K3VoTIJtrpJdi4H7WFih4uI_veFBYjAbLPaYwOVe-emstt5CvSOxY1TqAmADKGFoA.'   
+os.environ["_BARD_API_KEY"]= 'Your KEY'   
 model = Detector()
 
 ocr = easyocr.Reader(['en','ar'])
